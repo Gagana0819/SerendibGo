@@ -1,437 +1,131 @@
-# 🌴 SerendibGo - Your Unified Travel Platform for Sri Lanka
-
-**SerendibGo** is a comprehensive travel platform that connects travelers with local guides, hotels, tours, and vehicle rentals across the beautiful island of Sri Lanka. Built with modern web technologies, it provides a seamless experience for both travelers and service providers.
-
-## 🚀 Features
-
-### For Travelers
-- **🏨 Hotel Booking**: Browse and book accommodations across Sri Lanka
-- **🗺️ Tour Packages**: Discover curated tours and experiences
-- **👨‍🏫 Local Guides**: Connect with certified local guides
-- **🚗 Vehicle Rentals**: Rent cars, bikes, and other vehicles
-- **💳 Secure Payments**: Multiple payment options including Stripe integration
-- **⭐ Reviews & Ratings**: Read and write reviews for services
-- **📱 Responsive Design**: Works perfectly on all devices
-
-### For Service Providers
-- **🏨 Hotel Management**: Complete hotel management dashboard
-- **👨‍🏫 Guide Portal**: Manage bookings, earnings, and profile
-- **🚗 Vehicle Owner Portal**: Manage vehicle rentals and bookings
-- **📊 Analytics Dashboard**: Comprehensive analytics and reporting
-- **💰 Payment Management**: Track payments and process refunds
-- **🔔 Notifications**: Real-time notifications and email alerts
-
-### For Administrators
-- **👥 User Management**: Manage all users and their roles
-- **📈 Analytics**: Platform-wide analytics and insights
-- **🔧 System Management**: Monitor system health and performance
-- **💬 Support System**: Handle customer support requests
-- **📧 Email Management**: Automated email notifications
-
-## 🛠️ Technology Stack
-
-### Frontend
-- **React 18** - Modern UI library
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Router** - Client-side routing
-- **Axios** - HTTP client
-- **React Hot Toast** - Notifications
-- **Lucide React** - Icons
-
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB** - Database
-- **Mongoose** - ODM for MongoDB
-- **JWT** - Authentication
-- **Stripe** - Payment processing
-- **Nodemailer** - Email service
-- **Winston** - Logging
-- **Helmet** - Security
-- **CORS** - Cross-origin resource sharing
-
-### Additional Services
-- **Google Gemini AI** - Chatbot and AI features
-- **Cron Jobs** - Automated reminders
-- **Docker** - Containerization
-- **Nginx** - Reverse proxy
-
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-- **Node.js** (v16 or higher)
-- **npm** (v8 or higher)
-- **MongoDB** (v5 or higher) or MongoDB Atlas account
-- **Git**
-
-## 🚀 Quick Start
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Blitz2001/SerendibGo---Your-unified-travel-platform-for-exploring-the-beautiful-island-of-Sri-Lanka..git
-cd SerendibGo---Your-unified-travel-platform-for-exploring-the-beautiful-island-of-Sri-Lanka.
-```
-
-### 2. Install Dependencies
-
-```bash
-# Install all dependencies (root, server, and client)
-npm run install-all
-
-# Or install individually:
-npm install                    # Root dependencies
-cd server && npm install      # Server dependencies
-cd ../client && npm install   # Client dependencies
-```
-
-### 3. Environment Setup
-
-Create environment files in the root directory:
-
-#### `env.local` (Development)
-```env
-# Server Configuration
-NODE_ENV=development
-PORT=5001
-MONGODB_URI=mongodb://localhost:27017/serendibgo
-
-# JWT Configuration
-JWT_SECRET=your-super-secret-jwt-key-here
-JWT_EXPIRE=7d
-
-# Client Configuration
-CLIENT_URL=http://localhost:3000
-
-# Email Configuration (Gmail example)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-
-# Payment Configuration
-STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
-STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
-
-# AI Configuration
-GEMINI_API_KEY=your-gemini-api-key
-
-# Rate Limiting
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=100
-
-# Logging
-LOG_LEVEL=info
-```
-
-#### `env.production` (Production)
-```env
-NODE_ENV=production
-PORT=5001
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/serendibgo
-JWT_SECRET=your-production-jwt-secret
-CLIENT_URL=https://yourdomain.com
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-production-email@gmail.com
-SMTP_PASS=your-production-app-password
-STRIPE_PUBLISHABLE_KEY=pk_live_your_live_stripe_key
-STRIPE_SECRET_KEY=sk_live_your_live_stripe_key
-GEMINI_API_KEY=your-production-gemini-key
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=50
-LOG_LEVEL=warn
-```
-
-### 4. Database Setup
-
-#### Option A: Local MongoDB
-```bash
-# Start MongoDB service
-# Windows: Start MongoDB service from Services
-# macOS: brew services start mongodb-community
-# Linux: sudo systemctl start mongod
-```
-
-#### Option B: MongoDB Atlas (Recommended)
-1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/atlas)
-2. Create a new cluster
-3. Get your connection string
-4. Update `MONGODB_URI` in your environment file
-
-### 5. Start the Application
-
-#### Development Mode
-```bash
-# Start both client and server concurrently
-npm run dev
-
-# Or start individually:
-npm run server    # Starts server on port 5001
-npm run client    # Starts client on port 3000
-```
-
-#### Production Mode
-```bash
-# Build the application
-npm run build:prod
-
-# Start production server
-npm run start:prod
-```
-
-## 🐳 Docker Deployment
-
-### Using Docker Compose (Recommended)
-
-1. **Build and start all services:**
-```bash
-docker-compose up --build
-```
-
-2. **Run in background:**
-```bash
-docker-compose up -d --build
-```
-
-3. **Stop services:**
-```bash
-docker-compose down
-```
-
-### Manual Docker Build
-
-```bash
-# Build the Docker image
-docker build -t serendibgo .
-
-# Run the container
-docker run -p 5001:5001 -p 80:80 serendibgo
-```
-
-## 📁 Project Structure
-
-```
-serendibgo/
-├── client/                 # React frontend
-│   ├── public/            # Static files
-│   ├── src/
-│   │   ├── components/    # Reusable components
-│   │   ├── pages/         # Page components
-│   │   ├── services/      # API services
-│   │   ├── contexts/      # React contexts
-│   │   ├── utils/         # Utility functions
-│   │   └── config/        # Configuration
-│   └── package.json
-├── server/                 # Node.js backend
-│   ├── controllers/       # Route controllers
-│   ├── models/           # Database models
-│   ├── routes/           # API routes
-│   ├── middleware/       # Custom middleware
-│   ├── services/         # Business logic
-│   ├── utils/           # Utility functions
-│   ├── tests/           # Test files
-│   └── package.json
-├── docs/                 # Documentation
-├── docker-compose.yml    # Docker configuration
-├── Dockerfile           # Docker image definition
-├── nginx.conf           # Nginx configuration
-└── package.json         # Root package.json
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-| Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
-| `NODE_ENV` | Environment mode | `development` | Yes |
-| `PORT` | Server port | `5001` | Yes |
-| `MONGODB_URI` | MongoDB connection string | - | Yes |
-| `JWT_SECRET` | JWT secret key | - | Yes |
-| `CLIENT_URL` | Frontend URL | `http://localhost:3000` | Yes |
-| `SMTP_HOST` | Email SMTP host | `smtp.gmail.com` | Yes |
-| `SMTP_USER` | Email username | - | Yes |
-| `SMTP_PASS` | Email password | - | Yes |
-| `STRIPE_SECRET_KEY` | Stripe secret key | - | Yes |
-| `GEMINI_API_KEY` | Google Gemini API key | - | Yes |
-
-### Database Models
-
-- **User**: User accounts and authentication
-- **Hotel**: Hotel information and rooms
-- **Tour**: Tour packages and itineraries
-- **Guide**: Guide profiles and services
-- **Vehicle**: Vehicle rental information
-- **Booking**: Hotel bookings
-- **TourBooking**: Tour bookings
-- **GuideBooking**: Guide bookings
-- **VehicleBooking**: Vehicle bookings
-- **Payment**: Payment transactions
-- **Review**: Reviews and ratings
-- **Notification**: User notifications
-
-## 🧪 Testing
-
-```bash
-# Run all tests
-npm test
-
-# Run server tests only
-cd server && npm test
-
-# Run client tests only
-cd client && npm test
-```
-
-## 📊 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
-- `POST /api/auth/forgot-password` - Password reset
-- `POST /api/auth/reset-password` - Reset password
-
-### Hotels
-- `GET /api/hotels` - Get all hotels
-- `GET /api/hotels/:id` - Get hotel by ID
-- `POST /api/hotels` - Create hotel (Admin/Hotel Owner)
-- `PUT /api/hotels/:id` - Update hotel
-- `DELETE /api/hotels/:id` - Delete hotel
-
-### Tours
-- `GET /api/tours` - Get all tours
-- `GET /api/tours/:id` - Get tour by ID
-- `POST /api/tours` - Create tour (Admin)
-- `PUT /api/tours/:id` - Update tour
-- `DELETE /api/tours/:id` - Delete tour
-
-### Guides
-- `GET /api/guides` - Get all guides
-- `GET /api/guides/:id` - Get guide by ID
-- `GET /api/guides/my-profile` - Get my guide profile
-- `PUT /api/guides/my-profile` - Update my profile
-
-### Bookings
-- `GET /api/bookings` - Get user bookings
-- `POST /api/bookings` - Create booking
-- `PUT /api/bookings/:id/modify` - Modify booking
-- `GET /api/bookings/:id/modification-history` - Get modification history
-
-### Payments
-- `POST /api/payments/create` - Create payment
-- `POST /api/payments/refund` - Process refund
-- `GET /api/payments/:id/invoice` - Generate invoice
-
-### Reviews
-- `GET /api/reviews` - Get reviews
-- `POST /api/reviews` - Create review
-- `PUT /api/reviews/:id` - Update review
-- `DELETE /api/reviews/:id` - Delete review
-
-### Notifications
-- `GET /api/notifications` - Get user notifications
-- `PUT /api/notifications/read` - Mark as read
-- `GET /api/notifications/unread-count` - Get unread count
-
-### Analytics (Admin Only)
-- `GET /api/analytics/platform` - Platform analytics
-- `GET /api/analytics/bookings` - Booking analytics
-- `GET /api/analytics/revenue` - Revenue analytics
-- `GET /api/analytics/users` - User analytics
-
-## 🔒 Security Features
-
-- **Helmet.js**: Security headers
-- **CORS**: Cross-origin resource sharing
-- **Rate Limiting**: API rate limiting
-- **JWT Authentication**: Secure token-based auth
-- **Input Validation**: Request validation
-- **SQL Injection Protection**: Mongoose ODM
-- **XSS Protection**: Input sanitization
-
-## 📧 Email Features
-
-- **Password Reset**: Automated password reset emails
-- **Email Verification**: Account verification emails
-- **Booking Confirmations**: Booking confirmation emails
-- **Payment Confirmations**: Payment receipt emails
-- **Booking Reminders**: Automated reminder emails
-- **Refund Notifications**: Refund confirmation emails
-
-## 🔔 Notification System
-
-- **Real-time Notifications**: In-app notifications
-- **Email Notifications**: Email alerts
-- **Priority Levels**: Low, Medium, High, Urgent
-- **Admin Broadcasting**: System-wide announcements
-- **Read/Unread Tracking**: Notification status tracking
-
-## 📈 Analytics & Reporting
-
-- **Platform Analytics**: Overall platform metrics
-- **Booking Analytics**: Booking trends and statistics
-- **Revenue Analytics**: Financial reporting
-- **User Analytics**: User behavior and demographics
-- **Real-time Dashboards**: Live data visualization
-
-## 🚀 Deployment
-
-### Production Checklist
-
-- [ ] Set `NODE_ENV=production`
-- [ ] Configure production MongoDB
-- [ ] Set up production email service
-- [ ] Configure Stripe live keys
-- [ ] Set up SSL certificates
-- [ ] Configure domain and DNS
-- [ ] Set up monitoring and logging
-- [ ] Configure backup strategies
-
-### Deployment Options
-
-1. **Traditional VPS/Cloud Server**
-2. **Docker Containers**
-3. **Kubernetes**
-4. **Serverless (AWS Lambda, Vercel)**
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Issues](https://github.com/Blitz2001/SerendibGo---Your-unified-travel-platform-for-exploring-the-beautiful-island-of-Sri-Lanka./issues) page
-2. Create a new issue with detailed information
-3. Contact the development team
-
-## 🙏 Acknowledgments
-
-- **React Team** - For the amazing React framework
-- **Express.js Team** - For the robust backend framework
-- **MongoDB Team** - For the flexible database
-- **Tailwind CSS Team** - For the utility-first CSS framework
-- **Stripe Team** - For the payment processing platform
-
-## 📞 Contact
-
-**Project Maintainer**: [Blitz2001](https://github.com/Blitz2001)
-
-**Email**: asbthanayamwatta2@gmail.com
-
-**Project Link**: [https://github.com/Blitz2001/SerendibGo---Your-unified-travel-platform-for-exploring-the-beautiful-island-of-Sri-Lanka.](https://github.com/Blitz2001/SerendibGo---Your-unified-travel-platform-for-exploring-the-beautiful-island-of-Sri-Lanka.)
+<h1 align="center">🌴 SerendibGo</h1>
+
+<p align="center">
+  A travel platform for Sri Lanka that brings hotels, tour packages, local guides and vehicle rentals into one place,
+  with dashboards for travellers, service providers and admins.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white"/>
+</p>
+
+<p align="center">
+  <a href="#-run-it">Run it</a> ·
+  <a href="https://github.com/Blitz2001/SerendibGo">Original team repo</a>
+</p>
+
+<!-- TODO: add screenshots to docs/screenshots/, then uncomment:
+![SerendibGo home page](docs/screenshots/home.png)
+-->
 
 ---
 
-**Made with ❤️ for Sri Lanka Tourism**
+## ✨ Features
+
+**Travellers:** book hotels, tours, local guides and vehicles · pay securely with Stripe · reviews and ratings · real-time messaging and notifications · AI travel chatbot (Gemini)
+
+**Service providers:** separate portals for hotels, guides and vehicle owners to manage listings, bookings and earnings
+
+**Admins:** user and role management, platform analytics, support requests, automated emails
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart LR
+    U([Browser]) -- "HTTP :80" --> N[Nginx<br/>reverse proxy]
+    N --> APP[Node.js / Express API<br/>+ built React app]
+    APP -- Mongoose --> DB[(MongoDB 7)]
+    APP <-- "WebSocket" --> U
+    APP --> ST[Stripe payments]
+    APP --> AI[Gemini chatbot]
+    APP --> SMTP[Email notifications]
+
+    subgraph docker [Docker Compose]
+      N
+      APP
+      DB
+    end
+```
+
+- **Multi-stage Docker build:** stage 1 builds the React app, stage 2 ships only the server with production dependencies, running as a **non-root user** with a built-in **health check** (`/health`).
+- **Docker Compose** runs three services: the app, MongoDB with a persistent volume, and Nginx in front as a reverse proxy.
+- **API hardening:** JWT auth, `express-validator` input validation and `express-rate-limit`.
+- **Tests:** Jest + Supertest for API and payment routes.
+
+---
+
+## 🧰 Tech stack
+
+| Layer | Tools |
+|---|---|
+| Frontend | React 18, React Router, React Query, React Hook Form, Tailwind CSS, Socket.io client |
+| Backend | Node.js, Express, Mongoose, JWT, Socket.io, Stripe, Gemini API |
+| Database | MongoDB 7 |
+| DevOps | Docker (multi-stage build), Docker Compose, Nginx |
+| Testing | Jest, Supertest |
+
+---
+
+## 🚀 Run it
+
+### With Docker (recommended)
+
+```bash
+git clone https://github.com/Gagana0819/SerendibGo.git
+cd SerendibGo
+cp .env.example .env.production    # fill in your own values
+docker compose up --build app mongodb
+```
+
+App: http://localhost:5000 · Health check: http://localhost:5000/health
+
+> The `nginx` service is the production setup: it redirects to HTTPS and expects a real domain in `nginx.conf` and certificates in `./ssl/`. Run `docker compose up --build` (all three services) only once those are in place.
+
+### Without Docker
+
+```bash
+npm run install-all     # installs root, server and client dependencies
+npm run dev             # API on :5000, React on :3000
+```
+
+### Environment variables
+
+| Variable | Purpose |
+|---|---|
+| `MONGODB_URI` | MongoDB connection string |
+| `JWT_SECRET`, `JWT_EXPIRE` | Auth tokens |
+| `CLIENT_URL` | Frontend URL (for CORS) |
+| `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` | Payments (use test keys) |
+| `GEMINI_API_KEY` | AI chatbot |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM` | Email |
+
+---
+
+## 👨‍💻 My role
+
+Team project (SLIIT, 3rd year).
+
+<!-- TODO: add 3–4 bullets about what YOU built (modules, pages, APIs, Docker setup). Interviewers will ask. -->
+
+> This is a fork of the team repository. The commit history here was squashed, so see the [original repo](https://github.com/Blitz2001/SerendibGo) for full history.
+
+---
+
+## 💡 What I learned & what I'd improve
+
+**Learned**
+- How a multi-stage Docker build keeps the production image small, and why the container should not run as root.
+- Putting Nginx in front of the Node app as a reverse proxy.
+
+**Next improvements**
+- [ ] Add a GitHub Actions pipeline: install, run Jest tests, build the Docker image
+- [ ] Remove default MongoDB credentials from `docker-compose.yml` and read them from `.env`
+- [ ] Deploy a public demo
